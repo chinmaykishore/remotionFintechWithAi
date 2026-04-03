@@ -1,6 +1,6 @@
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Img, Audio, staticFile } from 'remotion';
 
-export const Scene4: React.FC = () => {
+export const Scene4: React.FC<{ voice: string }> = ({ voice }) => {
 	const frame = useCurrentFrame();
 	const { fps } = useVideoConfig();
 
@@ -17,7 +17,7 @@ export const Scene4: React.FC = () => {
 	return (
 		<AbsoluteFill style={{ justifyContent: 'center', alignItems: 'center', padding: 80, color: 'white', fontFamily: 'Outfit, sans-serif' }}>
 			
-			<Audio src={staticFile('ssy/scene4.mp3')} />
+			<Audio src={staticFile(`ssy/${voice}/scene4.mp3`)} />
 
 			{/* PM Modi Photo */}
 			<div style={{

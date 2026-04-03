@@ -1,6 +1,6 @@
 import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig, Audio, staticFile } from 'remotion';
 
-export const Scene3: React.FC = () => {
+export const Scene3: React.FC<{ voice: string }> = ({ voice }) => {
 	const frame = useCurrentFrame();
 	const { fps } = useVideoConfig();
 
@@ -16,7 +16,7 @@ export const Scene3: React.FC = () => {
 	return (
 		<AbsoluteFill style={{ padding: 60, color: 'white', fontFamily: 'Outfit, sans-serif' }}>
 			
-			<Audio src={staticFile('ssy/scene3.mp3')} />
+			<Audio src={staticFile(`ssy/${voice}/scene3.mp3`)} />
 
 			{/* Title */}
 			<div style={{

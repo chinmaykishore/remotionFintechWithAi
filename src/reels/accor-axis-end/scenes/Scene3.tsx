@@ -1,7 +1,7 @@
 import { Layout } from '../components/Shared';
 import { useCurrentFrame, spring, useVideoConfig, Audio, staticFile } from 'remotion';
 
-export const Scene3: React.FC = () => {
+export const Scene3: React.FC<{ voice: string }> = ({ voice }) => {
     const frame = useCurrentFrame();
     const { fps } = useVideoConfig();
 
@@ -25,7 +25,7 @@ export const Scene3: React.FC = () => {
             color="#FF3B30"
             showAxis
         >
-            <Audio src={staticFile('accor-axis-end/scene3.mp3')} playbackRate={1.35} />
+            <Audio src={staticFile(`accor-axis-end/${voice}/scene3.mp3`)} playbackRate={1.35} />
 
             <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 30 }}>
                 {affected.map((item, i) => {

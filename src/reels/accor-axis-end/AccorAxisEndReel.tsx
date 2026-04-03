@@ -6,54 +6,67 @@ import { Scene3 } from './scenes/Scene3';
 import { Scene4 } from './scenes/Scene4';
 
 const FPS = 30;
-const PLAYBACK_RATE = 1.35;
 
-export const calculateMetadataAccor: CalculateMetadataFunction<any> = async () => {
-    const durations = await Promise.all([
-        getAudioDurationInSeconds(staticFile('accor-axis-end/scene1.mp3')),
-        getAudioDurationInSeconds(staticFile('accor-axis-end/scene2.mp3')),
-        getAudioDurationInSeconds(staticFile('accor-axis-end/scene3.mp3')),
-        getAudioDurationInSeconds(staticFile('accor-axis-end/scene4.mp3')),
-    ]);
+export const calculateMetadataAccor: CalculateMetadataFunction<{ voice: string }> = async ({ props }) => {
+	const voice = props.voice || 'christopher';
+	
+	const durations = await Promise.all([
+		getAudioDurationInSeconds(staticFile(`accor-axis-end/${voice}/scene1.mp3`)),
+		getAudioDurationInSeconds(staticFile(`accor-axis-end/${voice}/scene2.mp3`)),
+		getAudioDurationInSeconds(staticFile(`accor-axis-end/${voice}/scene3.mp3`)),
+		getAudioDurationInSeconds(staticFile(`accor-axis-end/${voice}/scene4.mp3`)),
+	]);
 
-    // Duration in frames = Math.ceil((audioDuration / playbackRate) * FPS)
-    const sceneLengths = durations.map((d) => Math.ceil((d / PLAYBACK_RATE) * FPS));
-    const totalDuration = sceneLengths.reduce((a, b) => a + b, 0);
+	// Note: The original code used 1.35x playback rate for audio.
+	// We need to account for that in metadata calculation.
+	const sceneLengths = durations.map((d) => Math.ceil((d / 1.35) * FPS));
+	const totalDuration = sceneLengths.reduce((a, b) => a + b, 0);
 
-    return {
-        durationInFrames: totalDuration,
-        props: {
-            sceneLengths,
-        },
-    };
+	return {
+		durationInFrames: totalDuration,
+		props: {
+			...props,
+			sceneLengths,
+		},
+	};
 };
 
-export const AccorAxisEndReel: React.FC<{ sceneLengths?: number[] }> = ({ sceneLengths }) => {
-    // Default lengths if not provided by calculateMetadata
-    const lengths = sceneLengths || [150, 150, 150, 150];
 
-    // Calculate sequence start points
-    let currentFrame = 0;
-    const sceneStarts = lengths.map((len) => {
-        const start = currentFrame;
-        currentFrame += len;
-        return start;
-    });
+export const AccorAxisEndReel: React.FC<{
+	voice: string;
+	sceneLengths?: number[];
+}> = ({ voice, sceneLengths }) => {
+	
+	const lengths = sceneLengths || [180, 180, 180, 180];
 
-    return (
-        <AbsoluteFill style={{ backgroundColor: '#0A0E21' }}>
-            <Sequence from={sceneStarts[0]} durationInFrames={lengths[0]}>
-                <Scene1 />
-            </Sequence>
-            <Sequence from={sceneStarts[1]} durationInFrames={lengths[1]}>
-                <Scene2 />
-            </Sequence>
-            <Sequence from={sceneStarts[2]} durationInFrames={lengths[2]}>
-                <Scene3 />
-            </Sequence>
-            <Sequence from={sceneStarts[3]} durationInFrames={lengths[3]}>
-                <Scene4 />
-            </Sequence>
-        </AbsoluteFill>
-    );
+	// Accumulate starts
+	let t = 0;
+	const s1Start = t; t += lengths[0];
+	const s2Start = t; t += lengths[1];
+	const s3Start = t; t += lengths[2];
+	const s4Start = t; t += lengths[3];
+
+	return (
+		<AbsoluteFill style={{ backgroundColor: '#0B132B' }}>
+			{/* Hook */}
+			<Sequence from={s1Start} durationInFrames={lengths[0]}>
+				<Scene1 voice={voice} />
+			</Sequence>
+
+			{/* Devaluation */}
+			<Sequence from={s2Start} durationInFrames={lengths[1]}>
+				<Scene2 voice={voice} />
+			</Sequence>
+
+			{/* Who is affected */}
+			<Sequence from={s3Start} durationInFrames={lengths[2]}>
+				<Scene3 voice={voice} />
+			</Sequence>
+
+			{/* CTA */}
+			<Sequence from={s4Start} durationInFrames={lengths[3]}>
+				<Scene4 voice={voice} />
+			</Sequence>
+		</AbsoluteFill>
+	);
 };

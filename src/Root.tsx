@@ -1,10 +1,8 @@
 import { Composition } from 'remotion';
 import { SSYReel, calculateMetadataSSY } from './reels/ssy/SSYReel';
-import { SSYReelEnhanced, calculateMetadataSSYEnhanced } from './reels/ssy/SSYReelEnhanced';
 import { TiaraCardReel } from './reels/tiara-card/TiaraCardReel';
 import { RBIRulesReel } from './reels/rbi-rules-apr2026/RBIRulesReel';
 import { AccorAxisEndReel, calculateMetadataAccor } from './reels/accor-axis-end/AccorAxisEndReel';
-import { AccorAxisEndReelEnhanced, calculateMetadataAccorEnhanced } from './reels/accor-axis-end/AccorAxisEndReelEnhanced';
 import './index.css';
 
 const FPS = 30;
@@ -21,41 +19,39 @@ export const RemotionRoot: React.FC = () => {
                 width={1080}
                 height={1920}
                 calculateMetadata={calculateMetadataSSY}
-                defaultProps={{
-                    sceneLengths: [180, 180, 180, 180]
-                }}
+                defaultProps={{ voice: 'original' }}
             />
 
             <Composition
                 id="SSY-Christopher-US"
-                component={SSYReelEnhanced}
+                component={SSYReel}
                 durationInFrames={720}
                 fps={FPS}
                 width={1080}
                 height={1920}
-                calculateMetadata={calculateMetadataSSYEnhanced}
+                calculateMetadata={calculateMetadataSSY}
                 defaultProps={{ voice: 'christopher' }}
             />
 
             <Composition
                 id="SSY-Guy-US"
-                component={SSYReelEnhanced}
+                component={SSYReel}
                 durationInFrames={720}
                 fps={FPS}
                 width={1080}
                 height={1920}
-                calculateMetadata={calculateMetadataSSYEnhanced}
+                calculateMetadata={calculateMetadataSSY}
                 defaultProps={{ voice: 'guy' }}
             />
 
             <Composition
                 id="SSY-Prabhat-India"
-                component={SSYReelEnhanced}
+                component={SSYReel}
                 durationInFrames={720}
                 fps={FPS}
                 width={1080}
                 height={1920}
-                calculateMetadata={calculateMetadataSSYEnhanced}
+                calculateMetadata={calculateMetadataSSY}
                 defaultProps={{ voice: 'prabhat' }}
             />
 
@@ -68,41 +64,39 @@ export const RemotionRoot: React.FC = () => {
                 width={1080}
                 height={1920}
                 calculateMetadata={calculateMetadataAccor}
-                defaultProps={{
-                    sceneLengths: [180, 180, 180, 180]
-                }}
+                defaultProps={{ voice: 'original' }}
             />
 
             <Composition
                 id="Accor-Christopher-US"
-                component={AccorAxisEndReelEnhanced}
+                component={AccorAxisEndReel}
                 durationInFrames={600}
                 fps={FPS}
                 width={1080}
                 height={1920}
-                calculateMetadata={calculateMetadataAccorEnhanced}
+                calculateMetadata={calculateMetadataAccor}
                 defaultProps={{ voice: 'christopher' }}
             />
 
             <Composition
                 id="Accor-Guy-US"
-                component={AccorAxisEndReelEnhanced}
+                component={AccorAxisEndReel}
                 durationInFrames={600}
                 fps={FPS}
                 width={1080}
                 height={1920}
-                calculateMetadata={calculateMetadataAccorEnhanced}
+                calculateMetadata={calculateMetadataAccor}
                 defaultProps={{ voice: 'guy' }}
             />
 
             <Composition
                 id="Accor-Prabhat-India"
-                component={AccorAxisEndReelEnhanced}
+                component={AccorAxisEndReel}
                 durationInFrames={600}
                 fps={FPS}
                 width={1080}
                 height={1920}
-                calculateMetadata={calculateMetadataAccorEnhanced}
+                calculateMetadata={calculateMetadataAccor}
                 defaultProps={{ voice: 'prabhat' }}
             />
 
