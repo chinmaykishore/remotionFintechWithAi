@@ -1,5 +1,5 @@
 import { Layout } from '../components/Shared';
-import { useCurrentFrame, interpolate, spring, useVideoConfig, Audio, staticFile } from 'remotion';
+import { useCurrentFrame, spring, useVideoConfig, Audio, staticFile, Img } from 'remotion';
 
 export const Scene4: React.FC = () => {
     const frame = useCurrentFrame();
@@ -11,20 +11,13 @@ export const Scene4: React.FC = () => {
         { icon: '🐦', label: 'X (Twitter)', handle: '@FinTechWithAI', color: '#1DA1F2' }
     ];
 
-    const scale = spring({
-        frame,
-        fps,
-        config: { damping: 10 },
-        delay: 80
-    });
-
     return (
         <Layout 
             title="STAY UPDATED" 
             subtitle="THANK YOU"
             color="#00F2FF"
         >
-            <Audio src={staticFile('accor-axis-end/scene4.mp3')} />
+            <Audio src={staticFile('accor-axis-end/scene4.mp3')} playbackRate={1.35} />
 
             <div style={{ marginTop: 60, display: 'flex', flexDirection: 'column', gap: 40 }}>
                 <div style={{ 
@@ -44,7 +37,7 @@ export const Scene4: React.FC = () => {
                         frame,
                         fps,
                         config: { damping: 12 },
-                        delay: 20 + i * 15
+                        delay: 15 + i * 12
                     });
 
                     return (
@@ -70,14 +63,24 @@ export const Scene4: React.FC = () => {
 
                 <div style={{ 
                     marginTop: 60, 
-                    textAlign: 'center',
-                    fontSize: 32,
-                    fontWeight: 600,
-                    color: 'rgba(255,255,255,0.6)',
-                    letterSpacing: 2,
-                    animation: 'pulse 2s infinite'
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: 30
                 }}>
-                    JOIN THE FINTECH REVOLUTION
+                     <Img 
+                        src={staticFile('accor-axis-end/assets/brand_logo.png')} 
+                        style={{ width: 140, height: 140, objectFit: 'contain' }} 
+                    />
+                    <div style={{ 
+                        textAlign: 'center',
+                        fontSize: 32,
+                        fontWeight: 600,
+                        color: 'rgba(255,255,255,0.6)',
+                        letterSpacing: 2
+                    }}>
+                        JOIN THE FINTECH REVOLUTION
+                    </div>
                 </div>
             </div>
         </Layout>

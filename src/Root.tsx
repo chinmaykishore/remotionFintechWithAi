@@ -2,7 +2,7 @@ import { Composition } from 'remotion';
 import { SSYReel, calculateMetadataSSY } from './reels/ssy/SSYReel';
 import { TiaraCardReel } from './reels/tiara-card/TiaraCardReel';
 import { RBIRulesReel } from './reels/rbi-rules-apr2026/RBIRulesReel';
-import { AccorAxisEndReel } from './reels/accor-axis-end/AccorAxisEndReel';
+import { AccorAxisEndReel, calculateMetadataAccor } from './reels/accor-axis-end/AccorAxisEndReel';
 import './index.css';
 
 const FPS = 30;
@@ -48,10 +48,11 @@ export const RemotionRoot: React.FC = () => {
             <Composition
                 id="AccorAxisEndReel"
                 component={AccorAxisEndReel}
-                durationInFrames={840} // 4 scenes * 210 frames
+                durationInFrames={600} // overridden by calculateMetadata
                 fps={FPS}
                 width={1080}
                 height={1920}
+                calculateMetadata={calculateMetadataAccor}
             />
 
 

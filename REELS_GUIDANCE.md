@@ -59,6 +59,12 @@ with all above details in this pic. create 3-4 scenes.
 use text-based representations or high-quality icons for the logos.
 Also create voiceovers for all the scenes in sync with the texts coming on screen.
 
+increase the scene duration of each screen so that eah scene ends when the voiceover for that screen has ended
+
+ok so since there are speerate voiceovers for each scene. after making the speed for voiceover to 1.35x, calculate the time that it will take for each voiceover to end. and then accordingly decide and assign that much time for that particular scene and likewise do this for all scene.
+
+always keep all texts on each screen little below the top and bottom, so that there is enough margins in top and bottom, so that when the reel is posted on instagram or youtube, the main content of the reel doesnot get hidden because of top and bottom texts in instgram and youtube that comes by default.
+
 --
 Prompt for last scene
 
@@ -66,3 +72,12 @@ also in last scene mention to like share follow and save our instgram and youtub
 instgram/fb - fintech_with_ai
 yt - @FinTechwithAI
 x - https://x.com/FinTechWithAI
+
+----------------------------------
+logos and images use prompt
+
+ok now create and use logos, images in each screen wherever required to make this reel more professional.
+
+---------------------------------
+instead of random logos of the branded companies, use their own logos , for eg, axis bank logo and accor logos are different in real. 
+also the fintech_with_ai watermark can be moved little down, since now it is coinciding with the reel texts

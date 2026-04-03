@@ -1,5 +1,5 @@
 import { Layout } from '../components/Shared';
-import { useCurrentFrame, interpolate, spring, useVideoConfig, Audio, staticFile } from 'remotion';
+import { useCurrentFrame, spring, useVideoConfig, Audio, staticFile, Img } from 'remotion';
 
 export const Scene2: React.FC = () => {
     const frame = useCurrentFrame();
@@ -9,7 +9,7 @@ export const Scene2: React.FC = () => {
         frame,
         fps,
         config: { damping: 12 },
-        delay: 20
+        delay: 15
     });
 
     const rates = [
@@ -22,8 +22,9 @@ export const Scene2: React.FC = () => {
             title="REWARD DEVALUATION" 
             subtitle="HUGE VALUE DROP"
             color="#FF9500"
+            showAxis
         >
-            <Audio src={staticFile('accor-axis-end/scene2.mp3')} />
+            <Audio src={staticFile('accor-axis-end/scene2.mp3')} playbackRate={1.35} />
 
             <div style={{ marginTop: 60, display: 'flex', flexDirection: 'column', gap: 60 }}>
                 {rates.map((rate, i) => {
@@ -31,7 +32,7 @@ export const Scene2: React.FC = () => {
                         frame,
                         fps,
                         config: { damping: 12 },
-                        delay: rate.delay
+                        delay: rate.delay === 40 ? 30 : 45
                     });
 
                     return (
@@ -39,11 +40,12 @@ export const Scene2: React.FC = () => {
                             background: 'rgba(255, 149, 0, 0.1)', 
                             border: '2px solid rgba(255, 149, 0, 0.2)',
                             borderRadius: 30,
-                            padding: 60,
+                            padding: '40px 60px',
                             transform: `scale(${rateSpring})`,
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: 30
+                            gap: 30,
+                            position: 'relative'
                         }}>
                             <div style={{ fontSize: 40, fontWeight: 900, color: '#FF9500', letterSpacing: 2 }}>{rate.label}</div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 50 }}>
@@ -62,10 +64,22 @@ export const Scene2: React.FC = () => {
                     borderRadius: 30,
                     textAlign: 'center',
                     transform: `scale(${scale})`,
-                    boxShadow: '0 20px 50px rgba(255, 75, 43, 0.3)'
+                    boxShadow: '0 20px 50px rgba(255, 75, 43, 0.3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 40
                 }}>
-                    <div style={{ fontSize: 36, fontWeight: 600, color: 'rgba(255,255,255,0.8)', marginBottom: 10 }}>VALUE DROP:</div>
-                    <div style={{ fontSize: 72, fontWeight: 900, color: 'white' }}>Up to 50%+</div>
+                    <div style={{ width: 120, height: 120 }}>
+                        <Img 
+                            src={staticFile('accor-axis-end/assets/devaluation_icon.png')} 
+                            style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                        />
+                    </div>
+                    <div>
+                        <div style={{ fontSize: 36, fontWeight: 600, color: 'rgba(255,255,255,0.8)', marginBottom: 10 }}>VALUE DROP:</div>
+                        <div style={{ fontSize: 72, fontWeight: 900, color: 'white' }}>Up to 50%+</div>
+                    </div>
                 </div>
             </div>
         </Layout>

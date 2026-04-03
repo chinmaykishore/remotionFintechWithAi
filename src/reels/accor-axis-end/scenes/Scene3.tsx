@@ -1,5 +1,5 @@
 import { Layout } from '../components/Shared';
-import { useCurrentFrame, interpolate, spring, useVideoConfig, Audio, staticFile } from 'remotion';
+import { useCurrentFrame, spring, useVideoConfig, Audio, staticFile } from 'remotion';
 
 export const Scene3: React.FC = () => {
     const frame = useCurrentFrame();
@@ -9,7 +9,7 @@ export const Scene3: React.FC = () => {
         frame,
         fps,
         config: { damping: 10, stiffness: 100 },
-        delay: 50
+        delay: 35
     });
 
     const affected = [
@@ -23,8 +23,9 @@ export const Scene3: React.FC = () => {
             title="WHO IS MOST AFFECTED?" 
             subtitle="THE IMPACT"
             color="#FF3B30"
+            showAxis
         >
-            <Audio src={staticFile('accor-axis-end/scene3.mp3')} />
+            <Audio src={staticFile('accor-axis-end/scene3.mp3')} playbackRate={1.35} />
 
             <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 30 }}>
                 {affected.map((item, i) => {
@@ -32,7 +33,7 @@ export const Scene3: React.FC = () => {
                         frame,
                         fps,
                         config: { damping: 12 },
-                        delay: 20 + i * 15
+                        delay: 15 + i * 12
                     });
 
                     return (

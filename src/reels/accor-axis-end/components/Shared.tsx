@@ -1,4 +1,4 @@
-import { useCurrentFrame, interpolate, useVideoConfig, AbsoluteFill } from 'remotion';
+import { useCurrentFrame, interpolate, useVideoConfig, AbsoluteFill, Img, staticFile } from 'remotion';
 
 export const Watermark: React.FC = () => {
     return (
@@ -6,20 +6,30 @@ export const Watermark: React.FC = () => {
             position: 'absolute',
             bottom: 100,
             width: '100%',
-            textAlign: 'center',
-            fontSize: 32,
-            fontWeight: 600,
-            color: 'rgba(255, 255, 255, 0.4)',
-            fontFamily: 'Outfit, sans-serif',
-            letterSpacing: 2,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 20,
             zIndex: 10
         }}>
-            @fintech_with_ai
+            <Img 
+                src={staticFile('accor-axis-end/assets/brand_logo.png')} 
+                style={{ width: 80, height: 80, objectFit: 'contain' }} 
+            />
+            <div style={{
+                fontSize: 32,
+                fontWeight: 600,
+                color: 'rgba(255, 255, 255, 0.6)',
+                fontFamily: 'Outfit, sans-serif',
+                letterSpacing: 2
+            }}>
+                @fintech_with_ai
+            </div>
         </div>
     );
 };
 
-export const Layout: React.FC<{ children: React.ReactNode, title?: string, subtitle?: string, color?: string }> = ({ children, title, subtitle, color = '#00F2FF' }) => {
+export const Layout: React.FC<{ children: React.ReactNode, title?: string, subtitle?: string, color?: string, showAxis?: boolean }> = ({ children, title, subtitle, color = '#00F2FF', showAxis = false }) => {
     const frame = useCurrentFrame();
     const { durationInFrames } = useVideoConfig();
 
@@ -42,7 +52,7 @@ export const Layout: React.FC<{ children: React.ReactNode, title?: string, subti
             backgroundColor: '#0A0E21',
             fontFamily: 'Outfit, sans-serif',
             color: 'white',
-            padding: '200px 80px 120px 80px',
+            padding: '250px 80px 450px 80px',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'flex-start',
@@ -62,6 +72,22 @@ export const Layout: React.FC<{ children: React.ReactNode, title?: string, subti
             
             {(title || subtitle) && (
                 <div style={{ marginBottom: 60, zIndex: 1, position: 'relative' }}>
+                    
+                    {showAxis && (
+                         <div style={{ 
+                            position: 'absolute', 
+                            top: -100, 
+                            right: 0, 
+                            width: 180, 
+                            height: 180,
+                        }}>
+                             <Img 
+                                src={staticFile('accor-axis-end/assets/axisnew.jpg')} 
+                                style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                            />
+                        </div>
+                    )}
+
                     {subtitle && (
                         <div style={{ 
                             fontSize: 36, 
@@ -82,7 +108,8 @@ export const Layout: React.FC<{ children: React.ReactNode, title?: string, subti
                             margin: 0,
                             background: 'linear-gradient(to right, #FFFFFF, #B0BEC5)',
                             WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent'
+                            WebkitTextFillColor: 'transparent',
+                            maxWidth: '75%'
                         }}>
                             {title}
                         </h1>
