@@ -50,3 +50,19 @@ node generate-voiceovers.mjs
 
 ---
 **Note:** If you add a new Reel, remember to register it in `src/Root.tsx` as a new `Composition`.
+
+----------------
+start prompt eg. for antigravity agent
+
+create new reel, named accorAxisEnd ,
+with all above details in this pic. create 3-4 scenes. 
+use text-based representations or high-quality icons for the logos.
+Also create voiceovers for all the scenes in sync with the texts coming on screen.
+
+--
+Prompt for last scene
+
+also in last scene mention to like share follow and save our instgram and youtube channel. 
+instgram/fb - fintech_with_ai
+yt - @FinTechwithAI
+x - https://x.com/FinTechWithAI
